@@ -14,17 +14,22 @@ function App() {
         msg: message,
         type: type
       })
+      setTimeout(() => {
+        setAlert(null);
+      }, 1500);
   }
   const togglemode=()=>{
     if(mode === 'light'){
     setmode('dark');
     document.body.style.backgroundColor='grey';
     showAlert("Dark mode enabled","success");
+    document.title= "TextUtils - Dark Mode";
     }
   else{
     setmode('light');
     document.body.style.backgroundColor='white';
     showAlert("light mode enabled","success");
+    document.title="TextUtils - Light Mode";
   }
 }
   return (
@@ -32,7 +37,7 @@ function App() {
     <Navbar title="TextUtils App" mode={mode} togglemode={togglemode} />
     <div className='container my-3'>
       <Alert alert={alert}/>
-    <TextForm heading="Enter the text to analyse"/>
+      <TextForm showAlert={showAlert} heading="Enter the text to Analyze below" mode={mode}/>
     </div>
     </>
   );
